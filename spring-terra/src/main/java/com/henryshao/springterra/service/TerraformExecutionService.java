@@ -1,42 +1,19 @@
-package com.henryshao.springterra.controller;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+package com.henryshao.springterra.service;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-@RestController
-public class TerraformController {
+public class TerraformExecutionService {
 
-    @GetMapping("terraform/provision")
-    public void provisionAWS(){
-        try {
-            runTerraform();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @GetMapping("terraform/destroy")
-    public void destroyAWS(){
-        try {
-            destroyTerraform();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    public TerraformExecutionService() {
     }
 
     public void runTerraform() throws IOException, InterruptedException {
         System.out.println("Provisioning");
         // Set the directory where the Terraform configuration files are located
-        String terraformDir = "C:/Users/Henry Work/Documents/Development/tf-vpc";
+        String terraformDir = "./configTest";
 
         // Initialize the Terraform configuration
         ProcessBuilder initProcessBuilder = new ProcessBuilder("terraform", "init")
@@ -60,7 +37,7 @@ public class TerraformController {
     public void destroyTerraform() throws IOException, InterruptedException {
         System.out.println("Destroying");
 
-        String terraformDir = "C:/Users/Henry Work/Documents/Development/tf-vpc";
+        String terraformDir = "./configTest";
 
         ProcessBuilder applyProcessBuilder = new ProcessBuilder("terraform", "apply", "terraform.out")
                 .directory(new File(terraformDir));

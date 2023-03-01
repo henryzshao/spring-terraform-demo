@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Terraform files to ignore
+*.tfstate*
+*.tfvars
+.terraform/
+terraform.tfstate.backup
+terraform.tfstate
+*.out

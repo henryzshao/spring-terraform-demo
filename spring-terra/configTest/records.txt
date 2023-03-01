@@ -1,0 +1,926 @@
+C:\Users\Henry Work\Documents\Development\tf-vpc>terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Using previously-installed hashicorp/aws v4.55.0
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+
+C:\Users\Henry Work\Documents\Development\tf-vpc>terraform plan -out terraform.out
+╷
+│ Error: configuring Terraform AWS Provider: error validating provider credentials: retrieving caller identity from STS: operation error STS: GetCallerIdentity, https response error StatusCode: 403, RequestID: aef27fab-6498-4947-af08-1879617db19e, api error SignatureDoesNotMatch: The request signature we calculated does not match the signature you provided. Check your AWS Secret Access Key and signing method. Consult the service documentation for details.
+│
+│   with provider["registry.terraform.io/hashicorp/aws"],
+│   on provider.tf line 10, in provider "aws":
+│   10: provider "aws" {
+│
+╵
+
+C:\Users\Henry Work\Documents\Development\tf-vpc>terraform plan -out terraform.out
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.web1 will be created
+  + resource "aws_instance" "web1" {
+      + ami                                  = "ami-0ae87df03b4940655"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags_all                             = (known after apply)
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + maintenance_options {
+          + auto_recovery = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + private_dns_name_options {
+          + enable_resource_name_dns_a_record    = (known after apply)
+          + enable_resource_name_dns_aaaa_record = (known after apply)
+          + hostname_type                        = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_internet_gateway.prod-igw will be created
+  + resource "aws_internet_gateway" "prod-igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "prod-igw"
+        }
+      + tags_all = {
+          + "Name" = "prod-igw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_key_pair.virginia-region-key-pair will be created
+  + resource "aws_key_pair" "virginia-region-key-pair" {
+      + arn             = (known after apply)
+      + fingerprint     = (known after apply)
+      + id              = (known after apply)
+      + key_name        = "virginia-region-key-pair"
+      + key_name_prefix = (known after apply)
+      + key_pair_id     = (known after apply)
+      + key_type        = (known after apply)
+      + public_key      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC47hB0AwfhxV+NPguasiwAQ5wXhYLlF5w4svfDmrzyQkUbf4nO1Nj7RhM0GYdeucxbKI8PJEZY4DP25IA56b8K0y2ntYKdMhpLN6BOYyPaKhdEHWzJ4aBn077GCOKiqsM4J3yUkdUNJpjqnFObM6n/C72eHTslbY8kGcjnisnAp3i3ZP4z6Qe7Of4kWWfKG64XjroqolfzvZJ2VgvNYvckdFaMacD1+OVe7T3PGi9tr/VYV39hKCwgNwcsIxn2Fv+sgqTWqZz4B2REo6QXly5ts/VM47bgrKQyMbdpPCN6mRXgk8SjXN6moa7dUjaIfMwSubIpeoEmWMeoipIrnolfMqvt/CS2susPPtRUlqmy0wv03SrrN8asB6iVRLrN7gWezSqnCnPjuY/Hx9g6pImeHUqonPrLlf7ich2nX40mITgnE8+d7J5DpgvFA7InFd32Ny4xa0llQNw5CTYDB+yw7gqVOSpyQuQkfabvgDQzpni+eH7vFVD8n46H7eIgc2s= henry work@DESKTOP-9PUTU51"
+      + tags_all        = (known after apply)
+    }
+
+  # aws_route_table.prod-public-crt will be created
+  + resource "aws_route_table" "prod-public-crt" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = "0.0.0.0/0"
+              + core_network_arn           = ""
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = (known after apply)
+              + instance_id                = ""
+              + ipv6_cidr_block            = ""
+              + local_gateway_id           = ""
+              + nat_gateway_id             = ""
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "prod-public-crt"
+        }
+      + tags_all         = {
+          + "Name" = "prod-public-crt"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.prod-crta-public-subnet-1 will be created
+  + resource "aws_route_table_association" "prod-crta-public-subnet-1" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_security_group.ssh-allowed will be created
+  + resource "aws_security_group" "ssh-allowed" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = (known after apply)
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "ssh-allowed"
+        }
+      + tags_all               = {
+          + "Name" = "ssh-allowed"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_subnet.prod-subnet-public-1 will be created
+  + resource "aws_subnet" "prod-subnet-public-1" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "us-east-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.1.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = true
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "prod-subnet-public-1"
+        }
+      + tags_all                                       = {
+          + "Name" = "prod-subnet-public-1"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # aws_vpc.prod-vpc will be created
+  + resource "aws_vpc" "prod-vpc" {
+      + arn                                  = (known after apply)
+      + cidr_block                           = "10.0.0.0/16"
+      + default_network_acl_id               = (known after apply)
+      + default_route_table_id               = (known after apply)
+      + default_security_group_id            = (known after apply)
+      + dhcp_options_id                      = (known after apply)
+      + enable_classiclink                   = (known after apply)
+      + enable_classiclink_dns_support       = (known after apply)
+      + enable_dns_hostnames                 = true
+      + enable_dns_support                   = true
+      + enable_network_address_usage_metrics = (known after apply)
+      + id                                   = (known after apply)
+      + instance_tenancy                     = "default"
+      + ipv6_association_id                  = (known after apply)
+      + ipv6_cidr_block                      = (known after apply)
+      + ipv6_cidr_block_network_border_group = (known after apply)
+      + main_route_table_id                  = (known after apply)
+      + owner_id                             = (known after apply)
+      + tags                                 = {
+          + "Name" = "prod-vpc"
+        }
+      + tags_all                             = {
+          + "Name" = "prod-vpc"
+        }
+    }
+
+Plan: 8 to add, 0 to change, 0 to destroy.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: terraform.out
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "terraform.out"
+
+C:\Users\Henry Work\Documents\Development\tf-vpc>terraform apply terraform.out
+aws_key_pair.virginia-region-key-pair: Creating...
+aws_vpc.prod-vpc: Creating...
+aws_key_pair.virginia-region-key-pair: Creation complete after 1s [id=virginia-region-key-pair]
+aws_vpc.prod-vpc: Still creating... [10s elapsed]
+aws_vpc.prod-vpc: Creation complete after 12s [id=vpc-0b8746398febdbeb7]
+aws_internet_gateway.prod-igw: Creating...
+aws_subnet.prod-subnet-public-1: Creating...
+aws_security_group.ssh-allowed: Creating...
+aws_internet_gateway.prod-igw: Creation complete after 1s [id=igw-0d702a14dd0dc93b5]
+aws_route_table.prod-public-crt: Creating...
+aws_route_table.prod-public-crt: Creation complete after 1s [id=rtb-0bf9fda6ebc91a532]
+aws_security_group.ssh-allowed: Creation complete after 3s [id=sg-050e1edb8ec138d37]
+aws_subnet.prod-subnet-public-1: Still creating... [10s elapsed]
+aws_subnet.prod-subnet-public-1: Creation complete after 11s [id=subnet-07a78a7e3e572ef5a]
+aws_route_table_association.prod-crta-public-subnet-1: Creating...
+aws_instance.web1: Creating...
+aws_route_table_association.prod-crta-public-subnet-1: Creation complete after 1s [id=rtbassoc-0f1ebb60b5c69a3da]
+aws_instance.web1: Still creating... [10s elapsed]
+aws_instance.web1: Still creating... [20s elapsed]
+aws_instance.web1: Still creating... [30s elapsed]
+aws_instance.web1: Provisioning with 'file'...
+aws_instance.web1: Still creating... [40s elapsed]
+╷
+│ Error: file provisioner error
+│
+│   with aws_instance.web1,
+│   on ec2.tf line 7, in resource "aws_instance" "web1":
+│    7:     provisioner "file" {
+│
+│ CreateFile nginx.sh: The system cannot find the file specified.
+╵
+
+C:\Users\Henry Work\Documents\Development\tf-vpc>terraform apply terraform.out
+╷
+│ Error: Saved plan is stale
+│
+│ The given plan file can no longer be applied because the state was changed by another operation after the plan was created.
+╵
+
+C:\Users\Henry Work\Documents\Development\tf-vpc>terraform plan -out terraform.out
+aws_key_pair.virginia-region-key-pair: Refreshing state... [id=virginia-region-key-pair]
+aws_vpc.prod-vpc: Refreshing state... [id=vpc-0b8746398febdbeb7]
+aws_internet_gateway.prod-igw: Refreshing state... [id=igw-0d702a14dd0dc93b5]
+aws_subnet.prod-subnet-public-1: Refreshing state... [id=subnet-07a78a7e3e572ef5a]
+aws_security_group.ssh-allowed: Refreshing state... [id=sg-050e1edb8ec138d37]
+aws_route_table.prod-public-crt: Refreshing state... [id=rtb-0bf9fda6ebc91a532]
+aws_instance.web1: Refreshing state... [id=i-0a863b95e0fbfdd9e]
+aws_route_table_association.prod-crta-public-subnet-1: Refreshing state... [id=rtbassoc-0f1ebb60b5c69a3da]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_instance.web1 is tainted, so must be replaced
+-/+ resource "aws_instance" "web1" {
+      ~ arn                                  = "arn:aws:ec2:us-east-1:991053080035:instance/i-0a863b95e0fbfdd9e" -> (known after apply)
+      ~ associate_public_ip_address          = true -> (known after apply)
+      ~ availability_zone                    = "us-east-1a" -> (known after apply)
+      ~ cpu_core_count                       = 1 -> (known after apply)
+      ~ cpu_threads_per_core                 = 1 -> (known after apply)
+      ~ disable_api_stop                     = false -> (known after apply)
+      ~ disable_api_termination              = false -> (known after apply)
+      ~ ebs_optimized                        = false -> (known after apply)
+      - hibernation                          = false -> null
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      ~ id                                   = "i-0a863b95e0fbfdd9e" -> (known after apply)
+      ~ instance_initiated_shutdown_behavior = "stop" -> (known after apply)
+      ~ instance_state                       = "running" -> (known after apply)
+      ~ ipv6_address_count                   = 0 -> (known after apply)
+      ~ ipv6_addresses                       = [] -> (known after apply)
+      ~ monitoring                           = false -> (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      ~ placement_partition_number           = 0 -> (known after apply)
+      ~ primary_network_interface_id         = "eni-075197e63bd2484ae" -> (known after apply)
+      ~ private_dns                          = "ip-10-0-1-169.ec2.internal" -> (known after apply)
+      ~ private_ip                           = "10.0.1.169" -> (known after apply)
+      ~ public_dns                           = "ec2-3-237-175-202.compute-1.amazonaws.com" -> (known after apply)
+      ~ public_ip                            = "3.237.175.202" -> (known after apply)
+      ~ secondary_private_ips                = [] -> (known after apply)
+      ~ security_groups                      = [] -> (known after apply)
+      - tags                                 = {} -> null
+      ~ tags_all                             = {} -> (known after apply)
+      ~ tenancy                              = "default" -> (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+        # (8 unchanged attributes hidden)
+
+      ~ capacity_reservation_specification {
+          ~ capacity_reservation_preference = "open" -> (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      ~ enclave_options {
+          ~ enabled = false -> (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      ~ maintenance_options {
+          ~ auto_recovery = "default" -> (known after apply)
+        }
+
+      ~ metadata_options {
+          ~ http_endpoint               = "enabled" -> (known after apply)
+          ~ http_put_response_hop_limit = 1 -> (known after apply)
+          ~ http_tokens                 = "optional" -> (known after apply)
+          ~ instance_metadata_tags      = "disabled" -> (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      ~ private_dns_name_options {
+          ~ enable_resource_name_dns_a_record    = false -> (known after apply)
+          ~ enable_resource_name_dns_aaaa_record = false -> (known after apply)
+          ~ hostname_type                        = "ip-name" -> (known after apply)
+        }
+
+      ~ root_block_device {
+          ~ delete_on_termination = true -> (known after apply)
+          ~ device_name           = "/dev/sda1" -> (known after apply)
+          ~ encrypted             = false -> (known after apply)
+          ~ iops                  = 100 -> (known after apply)
+          + kms_key_id            = (known after apply)
+          ~ tags                  = {} -> (known after apply)
+          ~ throughput            = 0 -> (known after apply)
+          ~ volume_id             = "vol-0264769a88597ad15" -> (known after apply)
+          ~ volume_size           = 8 -> (known after apply)
+          ~ volume_type           = "gp2" -> (known after apply)
+        }
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: terraform.out
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "terraform.out"
+
+C:\Users\Henry Work\Documents\Development\tf-vpc>terraform apply terraform.out
+aws_instance.web1: Destroying... [id=i-0a863b95e0fbfdd9e]
+aws_instance.web1: Still destroying... [id=i-0a863b95e0fbfdd9e, 10s elapsed]
+aws_instance.web1: Still destroying... [id=i-0a863b95e0fbfdd9e, 20s elapsed]
+aws_instance.web1: Still destroying... [id=i-0a863b95e0fbfdd9e, 30s elapsed]
+aws_instance.web1: Destruction complete after 30s
+aws_instance.web1: Creating...
+aws_instance.web1: Still creating... [10s elapsed]
+aws_instance.web1: Still creating... [20s elapsed]
+aws_instance.web1: Still creating... [30s elapsed]
+aws_instance.web1: Provisioning with 'file'...
+aws_instance.web1: Still creating... [40s elapsed]
+aws_instance.web1: Provisioning with 'remote-exec'...
+aws_instance.web1 (remote-exec): Connecting to remote host via SSH...
+aws_instance.web1 (remote-exec):   Host: 44.200.8.162
+aws_instance.web1 (remote-exec):   User: ubuntu
+aws_instance.web1 (remote-exec):   Password: false
+aws_instance.web1 (remote-exec):   Private key: true
+aws_instance.web1 (remote-exec):   Certificate: false
+aws_instance.web1 (remote-exec):   SSH Agent: false
+aws_instance.web1 (remote-exec):   Checking Host Key: false
+aws_instance.web1 (remote-exec):   Target Platform: unix
+aws_instance.web1 (remote-exec): Connected!
+aws_instance.web1: Still creating... [50s elapsed]
+aws_instance.web1 (remote-exec): 0% [Working]
+aws_instance.web1 (remote-exec): Hit:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic InRelease
+aws_instance.web1 (remote-exec): 0% [Connecting to security.ubuntu.com (
+aws_instance.web1 (remote-exec): Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+aws_instance.web1 (remote-exec): Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-backports InRelease [83.3 kB]
+aws_instance.web1 (remote-exec): Get:4 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+aws_instance.web1 (remote-exec): 0% [4 InRelease 14.2 kB/88.7 kB 16%]
+aws_instance.web1 (remote-exec): 0% [1 InRelease gpgv 242 kB] [4 InRelea
+aws_instance.web1 (remote-exec): 0% [1 InRelease gpgv 242 kB]
+aws_instance.web1 (remote-exec): 0% [Working]
+aws_instance.web1 (remote-exec): 0% [2 InRelease gpgv 88.7 kB] [Waiting
+aws_instance.web1 (remote-exec): Get:5 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic/universe amd64 Packages [8570 kB]
+aws_instance.web1 (remote-exec): 0% [2 InRelease gpgv 88.7 kB] [5 Packag
+aws_instance.web1 (remote-exec): 0% [2 InRelease gpgv 88.7 kB]
+aws_instance.web1 (remote-exec): 0% [Working]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [Waiting for
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): Get:6 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic/universe Translation-en [4941 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): Get:7 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic/multiverse amd64 Packages [151 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): Get:8 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic/multiverse Translation-en [108 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): Get:9 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [2901 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): Get:10 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1882 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [3 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [10 Packages
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): Get:11 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/universe Translation-en [410 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): Get:12 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [25.6 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): Get:13 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/multiverse Translation-en [6088 B]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): Get:14 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-backports/main amd64 Packages [53.3 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): Get:15 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-backports/main Translation-en [14.6 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): Get:16 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-backports/universe amd64 Packages [18.1 kB]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): Get:17 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-backports/universe Translation-en [8668 B]
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 0% [5 Packages store 0 B] [4 InRelease
+aws_instance.web1 (remote-exec): 76% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): Get:18 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [2569 kB]
+aws_instance.web1 (remote-exec): 76% [5 Packages store 0 B] [18 Packages
+aws_instance.web1 (remote-exec): 85% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): Get:19 http://security.ubuntu.com/ubuntu bionic-security/main Translation-en [445 kB]
+aws_instance.web1 (remote-exec): 85% [5 Packages store 0 B] [19 Translat
+aws_instance.web1 (remote-exec): 86% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): Get:20 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [1113 kB]
+aws_instance.web1 (remote-exec): 86% [5 Packages store 0 B] [20 Packages
+aws_instance.web1 (remote-exec): 89% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): Get:21 http://security.ubuntu.com/ubuntu bionic-security/restricted Translation-en [154 kB]
+aws_instance.web1 (remote-exec): 89% [5 Packages store 0 B] [21 Translat
+aws_instance.web1 (remote-exec): 90% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): Get:22 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [1270 kB]
+aws_instance.web1 (remote-exec): 90% [5 Packages store 0 B] [22 Packages
+aws_instance.web1 (remote-exec): 94% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): Get:23 http://security.ubuntu.com/ubuntu bionic-security/universe Translation-en [296 kB]
+aws_instance.web1 (remote-exec): 94% [5 Packages store 0 B] [23 Translat
+aws_instance.web1 (remote-exec): 95% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): Get:24 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [19.8 kB]
+aws_instance.web1 (remote-exec): 95% [5 Packages store 0 B] [24 Packages
+aws_instance.web1 (remote-exec): 95% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): Get:25 http://security.ubuntu.com/ubuntu bionic-security/multiverse Translation-en [3928 B]
+aws_instance.web1 (remote-exec): 95% [5 Packages store 0 B] [25 Translat
+aws_instance.web1 (remote-exec): 95% [5 Packages store 0 B]
+aws_instance.web1: Still creating... [1m0s elapsed]
+aws_instance.web1 (remote-exec): 95% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): 95% [5 Packages store 0 B]
+aws_instance.web1 (remote-exec): 95% [Working]
+aws_instance.web1 (remote-exec): 95% [6 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 95% [6 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 95% [Working]
+aws_instance.web1 (remote-exec): 95% [7 Packages store 0 B]
+aws_instance.web1 (remote-exec): 96% [Working]
+aws_instance.web1 (remote-exec): 96% [8 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 96% [Working]
+aws_instance.web1 (remote-exec): 96% [9 Packages store 0 B]
+aws_instance.web1 (remote-exec): 96% [Working]
+aws_instance.web1 (remote-exec): 96% [10 Packages store 0 B]
+aws_instance.web1 (remote-exec): 96% [Working]
+aws_instance.web1 (remote-exec): 96% [11 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 97% [Working]
+aws_instance.web1 (remote-exec): 97% [12 Packages store 0 B]
+aws_instance.web1 (remote-exec): 97% [Working]
+aws_instance.web1 (remote-exec): 97% [13 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 97% [Working]
+aws_instance.web1 (remote-exec): 97% [14 Packages store 0 B]
+aws_instance.web1 (remote-exec): 97% [Working]
+aws_instance.web1 (remote-exec): 97% [15 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 98% [Working]
+aws_instance.web1 (remote-exec): 98% [16 Packages store 0 B]
+aws_instance.web1 (remote-exec): 98% [Working]
+aws_instance.web1 (remote-exec): 98% [17 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 98% [Working]
+aws_instance.web1 (remote-exec): 98% [18 Packages store 0 B]
+aws_instance.web1 (remote-exec): 98% [Working]
+aws_instance.web1 (remote-exec): 98% [19 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 99% [Working]
+aws_instance.web1 (remote-exec): 99% [20 Packages store 0 B]
+aws_instance.web1 (remote-exec): 99% [Working]
+aws_instance.web1 (remote-exec): 99% [21 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 99% [Working]
+aws_instance.web1 (remote-exec): 99% [22 Packages store 0 B]
+aws_instance.web1 (remote-exec): 99% [Working]
+aws_instance.web1 (remote-exec): 99% [23 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 100% [Working]
+aws_instance.web1 (remote-exec): 100% [24 Packages store 0 B]
+aws_instance.web1 (remote-exec): 100% [Working]
+aws_instance.web1 (remote-exec): 100% [25 Translation-en store 0 B]
+aws_instance.web1 (remote-exec): 100% [Working]
+aws_instance.web1 (remote-exec): Fetched 25.2 MB in 6s (4278 kB/s)
+aws_instance.web1 (remote-exec): Reading package lists... 0%
+aws_instance.web1 (remote-exec): Reading package lists... 0%
+aws_instance.web1 (remote-exec): Reading package lists... 0%
+aws_instance.web1 (remote-exec): Reading package lists... 3%
+aws_instance.web1 (remote-exec): Reading package lists... 3%
+aws_instance.web1 (remote-exec): Reading package lists... 4%
+aws_instance.web1 (remote-exec): Reading package lists... 4%
+aws_instance.web1 (remote-exec): Reading package lists... 4%
+aws_instance.web1 (remote-exec): Reading package lists... 4%
+aws_instance.web1 (remote-exec): Reading package lists... 4%
+aws_instance.web1 (remote-exec): Reading package lists... 4%
+aws_instance.web1 (remote-exec): Reading package lists... 31%
+aws_instance.web1 (remote-exec): Reading package lists... 31%
+aws_instance.web1 (remote-exec): Reading package lists... 45%
+aws_instance.web1 (remote-exec): Reading package lists... 45%
+aws_instance.web1 (remote-exec): Reading package lists... 45%
+aws_instance.web1 (remote-exec): Reading package lists... 46%
+aws_instance.web1 (remote-exec): Reading package lists... 46%
+aws_instance.web1 (remote-exec): Reading package lists... 46%
+aws_instance.web1 (remote-exec): Reading package lists... 46%
+aws_instance.web1 (remote-exec): Reading package lists... 55%
+aws_instance.web1 (remote-exec): Reading package lists... 55%
+aws_instance.web1 (remote-exec): Reading package lists... 61%
+aws_instance.web1 (remote-exec): Reading package lists... 61%
+aws_instance.web1 (remote-exec): Reading package lists... 65%
+aws_instance.web1 (remote-exec): Reading package lists... 65%
+aws_instance.web1 (remote-exec): Reading package lists... 66%
+aws_instance.web1 (remote-exec): Reading package lists... 66%
+aws_instance.web1 (remote-exec): Reading package lists... 72%
+aws_instance.web1 (remote-exec): Reading package lists... 72%
+aws_instance.web1 (remote-exec): Reading package lists... 74%
+aws_instance.web1 (remote-exec): Reading package lists... 74%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 75%
+aws_instance.web1 (remote-exec): Reading package lists... 83%
+aws_instance.web1 (remote-exec): Reading package lists... 83%
+aws_instance.web1 (remote-exec): Reading package lists... 88%
+aws_instance.web1 (remote-exec): Reading package lists... 88%
+aws_instance.web1 (remote-exec): Reading package lists... 92%
+aws_instance.web1 (remote-exec): Reading package lists... 92%
+aws_instance.web1 (remote-exec): Reading package lists... 94%
+aws_instance.web1 (remote-exec): Reading package lists... 94%
+aws_instance.web1 (remote-exec): Reading package lists... 97%
+aws_instance.web1 (remote-exec): Reading package lists... 97%
+aws_instance.web1 (remote-exec): Reading package lists... 99%
+aws_instance.web1 (remote-exec): Reading package lists... 99%
+aws_instance.web1 (remote-exec): Reading package lists... 99%
+aws_instance.web1 (remote-exec): Reading package lists... 99%
+aws_instance.web1 (remote-exec): Reading package lists... 99%
+aws_instance.web1 (remote-exec): Reading package lists... 99%
+aws_instance.web1 (remote-exec): Reading package lists... Done
+aws_instance.web1 (remote-exec): Reading package lists... 0%
+aws_instance.web1 (remote-exec): Reading package lists... 100%
+aws_instance.web1 (remote-exec): Reading package lists... Done
+aws_instance.web1 (remote-exec): Building dependency tree... 0%
+aws_instance.web1 (remote-exec): Building dependency tree... 0%
+aws_instance.web1 (remote-exec): Building dependency tree... 50%
+aws_instance.web1 (remote-exec): Building dependency tree... 50%
+aws_instance.web1 (remote-exec): Building dependency tree
+aws_instance.web1 (remote-exec): Reading state information... 0%
+aws_instance.web1 (remote-exec): Reading state information... 0%
+aws_instance.web1 (remote-exec): Reading state information... Done
+aws_instance.web1 (remote-exec): The following additional packages will be installed:
+aws_instance.web1 (remote-exec):   fontconfig-config fonts-dejavu-core
+aws_instance.web1 (remote-exec):   libfontconfig1 libgd3 libjbig0
+aws_instance.web1 (remote-exec):   libjpeg-turbo8 libjpeg8
+aws_instance.web1 (remote-exec):   libnginx-mod-http-geoip
+aws_instance.web1 (remote-exec):   libnginx-mod-http-image-filter
+aws_instance.web1 (remote-exec):   libnginx-mod-http-xslt-filter
+aws_instance.web1 (remote-exec):   libnginx-mod-mail
+aws_instance.web1 (remote-exec):   libnginx-mod-stream libtiff5
+aws_instance.web1 (remote-exec):   libwebp6 libxpm4 nginx-common
+aws_instance.web1 (remote-exec):   nginx-core
+aws_instance.web1 (remote-exec): Suggested packages:
+aws_instance.web1 (remote-exec):   libgd-tools fcgiwrap nginx-doc
+aws_instance.web1 (remote-exec):   ssl-cert
+aws_instance.web1 (remote-exec): The following NEW packages will be installed:
+aws_instance.web1 (remote-exec):   fontconfig-config fonts-dejavu-core
+aws_instance.web1 (remote-exec):   libfontconfig1 libgd3 libjbig0
+aws_instance.web1 (remote-exec):   libjpeg-turbo8 libjpeg8
+aws_instance.web1 (remote-exec):   libnginx-mod-http-geoip
+aws_instance.web1 (remote-exec):   libnginx-mod-http-image-filter
+aws_instance.web1 (remote-exec):   libnginx-mod-http-xslt-filter
+aws_instance.web1 (remote-exec):   libnginx-mod-mail
+aws_instance.web1 (remote-exec):   libnginx-mod-stream libtiff5
+aws_instance.web1 (remote-exec):   libwebp6 libxpm4 nginx nginx-common
+aws_instance.web1 (remote-exec):   nginx-core
+aws_instance.web1 (remote-exec): 0 upgraded, 18 newly installed, 0 to remove and 2 not upgraded.
+aws_instance.web1 (remote-exec): Need to get 2464 kB of archives.
+aws_instance.web1 (remote-exec): After this operation, 8218 kB of additional disk space will be used.
+aws_instance.web1 (remote-exec): 0% [Working]
+aws_instance.web1 (remote-exec): Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libjpeg-turbo8 amd64 1.5.2-0ubuntu5.18.04.6 [111 kB]
+aws_instance.web1 (remote-exec): 0% [1 libjpeg-turbo8 0 B/111 kB 0%]
+aws_instance.web1 (remote-exec): 5% [Working]
+aws_instance.web1 (remote-exec): Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic/main amd64 fonts-dejavu-core all 2.37-1 [1041 kB]
+aws_instance.web1 (remote-exec): 5% [2 fonts-dejavu-core 0 B/1041 kB 0%]
+aws_instance.web1 (remote-exec): 40% [Working]
+aws_instance.web1 (remote-exec): Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic/main amd64 fontconfig-config all 2.12.6-0ubuntu2 [55.8 kB]
+aws_instance.web1 (remote-exec): 40% [3 fontconfig-config 0 B/55.8 kB 0%
+aws_instance.web1 (remote-exec): 43% [Working]
+aws_instance.web1 (remote-exec): Get:4 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic/main amd64 libfontconfig1 amd64 2.12.6-0ubuntu2 [137 kB]
+aws_instance.web1 (remote-exec): 43% [4 libfontconfig1 0 B/137 kB 0%]
+aws_instance.web1 (remote-exec): 48% [Working]
+aws_instance.web1 (remote-exec): Get:5 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic/main amd64 libjpeg8 amd64 8c-2ubuntu8 [2194 B]
+aws_instance.web1 (remote-exec): 48% [5 libjpeg8 0 B/2194 B 0%]
+aws_instance.web1 (remote-exec): 49% [Working]
+aws_instance.web1 (remote-exec): Get:6 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libjbig0 amd64 2.1-3.1ubuntu0.18.04.1 [27.0 kB]
+aws_instance.web1 (remote-exec): 49% [6 libjbig0 0 B/27.0 kB 0%]
+aws_instance.web1 (remote-exec): 51% [Working]
+aws_instance.web1 (remote-exec): Get:7 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libtiff5 amd64 4.0.9-5ubuntu0.9 [154 kB]
+aws_instance.web1 (remote-exec): 51% [7 libtiff5 0 B/154 kB 0%]
+aws_instance.web1 (remote-exec): 57% [Working]
+aws_instance.web1 (remote-exec): Get:8 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libwebp6 amd64 0.6.1-2ubuntu0.18.04.1 [186 kB]
+aws_instance.web1 (remote-exec): 57% [8 libwebp6 0 B/186 kB 0%]
+aws_instance.web1 (remote-exec): 65% [Working]
+aws_instance.web1 (remote-exec): Get:9 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxpm4 amd64 1:3.5.12-1ubuntu0.18.04.2 [34.8 kB]
+aws_instance.web1 (remote-exec): 65% [9 libxpm4 0 B/34.8 kB 0%]
+aws_instance.web1 (remote-exec): 67% [Working]
+aws_instance.web1 (remote-exec): Get:10 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgd3 amd64 2.2.5-4ubuntu0.5 [119 kB]
+aws_instance.web1 (remote-exec): 67% [10 libgd3 0 B/119 kB 0%]
+aws_instance.web1 (remote-exec): 72% [Working]
+aws_instance.web1 (remote-exec): Get:11 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 nginx-common all 1.14.0-0ubuntu1.11 [37.2 kB]
+aws_instance.web1 (remote-exec): 72% [11 nginx-common 0 B/37.2 kB 0%]
+aws_instance.web1 (remote-exec): 74% [Working]
+aws_instance.web1 (remote-exec): Get:12 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-http-geoip amd64 1.14.0-0ubuntu1.11 [11.0 kB]
+aws_instance.web1 (remote-exec): 74% [12 libnginx-mod-http-geoip 0 B/11.
+aws_instance.web1 (remote-exec): 76% [Working]
+aws_instance.web1 (remote-exec): Get:13 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-http-image-filter amd64 1.14.0-0ubuntu1.11 [14.3 kB]
+aws_instance.web1 (remote-exec): 76% [13 libnginx-mod-http-image-filter
+aws_instance.web1 (remote-exec): 77% [Working]
+aws_instance.web1 (remote-exec): Get:14 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-http-xslt-filter amd64 1.14.0-0ubuntu1.11 [12.8 kB]
+aws_instance.web1 (remote-exec): 77% [14 libnginx-mod-http-xslt-filter 0
+aws_instance.web1 (remote-exec): 79% [Working]
+aws_instance.web1 (remote-exec): Get:15 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-mail amd64 1.14.0-0ubuntu1.11 [41.8 kB]
+aws_instance.web1 (remote-exec): 79% [15 libnginx-mod-mail 0 B/41.8 kB 0
+aws_instance.web1 (remote-exec): 81% [Working]
+aws_instance.web1 (remote-exec): Get:16 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-stream amd64 1.14.0-0ubuntu1.11 [63.5 kB]
+aws_instance.web1 (remote-exec): 81% [16 libnginx-mod-stream 0 B/63.5 kB
+aws_instance.web1 (remote-exec): 84% [Working]
+aws_instance.web1 (remote-exec): Get:17 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 nginx-core amd64 1.14.0-0ubuntu1.11 [413 kB]
+aws_instance.web1 (remote-exec): 84% [17 nginx-core 0 B/413 kB 0%]
+aws_instance.web1 (remote-exec): 99% [Working]
+aws_instance.web1 (remote-exec): Get:18 http://us-east-1.ec2.archive.ubuntu.com/ubuntu bionic-updates/main amd64 nginx all 1.14.0-0ubuntu1.11 [3596 B]
+aws_instance.web1 (remote-exec): 99% [18 nginx 0 B/3596 B 0%]
+aws_instance.web1 (remote-exec): 100% [Working]
+aws_instance.web1 (remote-exec): Fetched 2464 kB in 0s (19.8 MB/s)
+aws_instance.web1 (remote-exec): Preconfiguring packages ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libjpeg-turbo8:amd64.
+aws_instance.web1 (remote-exec): (Reading database ...
+aws_instance.web1 (remote-exec): (Reading database ... 5%
+aws_instance.web1 (remote-exec): (Reading database ... 10%
+aws_instance.web1 (remote-exec): (Reading database ... 15%
+aws_instance.web1 (remote-exec): (Reading database ... 20%
+aws_instance.web1 (remote-exec): (Reading database ... 25%
+aws_instance.web1 (remote-exec): (Reading database ... 30%
+aws_instance.web1 (remote-exec): (Reading database ... 35%
+aws_instance.web1 (remote-exec): (Reading database ... 40%
+aws_instance.web1 (remote-exec): (Reading database ... 45%
+aws_instance.web1 (remote-exec): (Reading database ... 50%
+aws_instance.web1 (remote-exec): (Reading database ... 55%
+aws_instance.web1 (remote-exec): (Reading database ... 60%
+aws_instance.web1 (remote-exec): (Reading database ... 65%
+aws_instance.web1 (remote-exec): (Reading database ... 70%
+aws_instance.web1 (remote-exec): (Reading database ... 75%
+aws_instance.web1 (remote-exec): (Reading database ... 80%
+aws_instance.web1 (remote-exec): (Reading database ... 85%
+aws_instance.web1 (remote-exec): (Reading database ... 90%
+aws_instance.web1 (remote-exec): (Reading database ... 95%
+aws_instance.web1 (remote-exec): (Reading database ... 100%
+aws_instance.web1 (remote-exec): (Reading database ... 58169 files and directories currently installed.)
+aws_instance.web1 (remote-exec): Preparing to unpack .../00-libjpeg-turbo8_1.5.2-0ubuntu5.18.04.6_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libjpeg-turbo8:amd64 (1.5.2-0ubuntu5.18.04.6) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package fonts-dejavu-core.
+aws_instance.web1 (remote-exec): Preparing to unpack .../01-fonts-dejavu-core_2.37-1_all.deb ...
+aws_instance.web1 (remote-exec): Unpacking fonts-dejavu-core (2.37-1) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package fontconfig-config.
+aws_instance.web1 (remote-exec): Preparing to unpack .../02-fontconfig-config_2.12.6-0ubuntu2_all.deb ...
+aws_instance.web1 (remote-exec): Unpacking fontconfig-config (2.12.6-0ubuntu2) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libfontconfig1:amd64.
+aws_instance.web1 (remote-exec): Preparing to unpack .../03-libfontconfig1_2.12.6-0ubuntu2_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libfontconfig1:amd64 (2.12.6-0ubuntu2) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libjpeg8:amd64.
+aws_instance.web1 (remote-exec): Preparing to unpack .../04-libjpeg8_8c-2ubuntu8_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libjbig0:amd64.
+aws_instance.web1 (remote-exec): Preparing to unpack .../05-libjbig0_2.1-3.1ubuntu0.18.04.1_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libjbig0:amd64 (2.1-3.1ubuntu0.18.04.1) ...
+aws_instance.web1: Still creating... [1m10s elapsed]
+aws_instance.web1 (remote-exec): Selecting previously unselected package libtiff5:amd64.
+aws_instance.web1 (remote-exec): Preparing to unpack .../06-libtiff5_4.0.9-5ubuntu0.9_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libtiff5:amd64 (4.0.9-5ubuntu0.9) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libwebp6:amd64.
+aws_instance.web1 (remote-exec): Preparing to unpack .../07-libwebp6_0.6.1-2ubuntu0.18.04.1_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libwebp6:amd64 (0.6.1-2ubuntu0.18.04.1) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libxpm4:amd64.
+aws_instance.web1 (remote-exec): Preparing to unpack .../08-libxpm4_1%3a3.5.12-1ubuntu0.18.04.2_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libxpm4:amd64 (1:3.5.12-1ubuntu0.18.04.2) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libgd3:amd64.
+aws_instance.web1 (remote-exec): Preparing to unpack .../09-libgd3_2.2.5-4ubuntu0.5_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libgd3:amd64 (2.2.5-4ubuntu0.5) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package nginx-common.
+aws_instance.web1 (remote-exec): Preparing to unpack .../10-nginx-common_1.14.0-0ubuntu1.11_all.deb ...
+aws_instance.web1 (remote-exec): Unpacking nginx-common (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libnginx-mod-http-geoip.
+aws_instance.web1 (remote-exec): Preparing to unpack .../11-libnginx-mod-http-geoip_1.14.0-0ubuntu1.11_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libnginx-mod-http-geoip (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libnginx-mod-http-image-filter.
+aws_instance.web1 (remote-exec): Preparing to unpack .../12-libnginx-mod-http-image-filter_1.14.0-0ubuntu1.11_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libnginx-mod-http-image-filter (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libnginx-mod-http-xslt-filter.
+aws_instance.web1 (remote-exec): Preparing to unpack .../13-libnginx-mod-http-xslt-filter_1.14.0-0ubuntu1.11_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libnginx-mod-http-xslt-filter (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libnginx-mod-mail.
+aws_instance.web1 (remote-exec): Preparing to unpack .../14-libnginx-mod-mail_1.14.0-0ubuntu1.11_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libnginx-mod-mail (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package libnginx-mod-stream.
+aws_instance.web1 (remote-exec): Preparing to unpack .../15-libnginx-mod-stream_1.14.0-0ubuntu1.11_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking libnginx-mod-stream (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package nginx-core.
+aws_instance.web1 (remote-exec): Preparing to unpack .../16-nginx-core_1.14.0-0ubuntu1.11_amd64.deb ...
+aws_instance.web1 (remote-exec): Unpacking nginx-core (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Selecting previously unselected package nginx.
+aws_instance.web1 (remote-exec): Preparing to unpack .../17-nginx_1.14.0-0ubuntu1.11_all.deb ...
+aws_instance.web1 (remote-exec): Unpacking nginx (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Setting up libjbig0:amd64 (2.1-3.1ubuntu0.18.04.1) ...
+aws_instance.web1 (remote-exec): Setting up fonts-dejavu-core (2.37-1) ...
+aws_instance.web1 (remote-exec): Setting up nginx-common (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.
+aws_instance.web1 (remote-exec): Setting up libjpeg-turbo8:amd64 (1.5.2-0ubuntu5.18.04.6) ...
+aws_instance.web1 (remote-exec): Setting up libnginx-mod-mail (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Setting up libxpm4:amd64 (1:3.5.12-1ubuntu0.18.04.2) ...
+aws_instance.web1 (remote-exec): Setting up libnginx-mod-http-xslt-filter (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Setting up libnginx-mod-http-geoip (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Setting up libwebp6:amd64 (0.6.1-2ubuntu0.18.04.1) ...
+aws_instance.web1 (remote-exec): Setting up libjpeg8:amd64 (8c-2ubuntu8) ...
+aws_instance.web1 (remote-exec): Setting up fontconfig-config (2.12.6-0ubuntu2) ...
+aws_instance.web1 (remote-exec): Setting up libnginx-mod-stream (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Setting up libtiff5:amd64 (4.0.9-5ubuntu0.9) ...
+aws_instance.web1 (remote-exec): Setting up libfontconfig1:amd64 (2.12.6-0ubuntu2) ...
+aws_instance.web1 (remote-exec): Setting up libgd3:amd64 (2.2.5-4ubuntu0.5) ...
+aws_instance.web1 (remote-exec): Setting up libnginx-mod-http-image-filter (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Setting up nginx-core (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Setting up nginx (1.14.0-0ubuntu1.11) ...
+aws_instance.web1 (remote-exec): Processing triggers for systemd (237-3ubuntu10.56) ...
+aws_instance.web1 (remote-exec): Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+aws_instance.web1 (remote-exec): Processing triggers for ufw (0.36-0ubuntu0.18.04.2) ...
+aws_instance.web1 (remote-exec): Processing triggers for ureadahead (0.100.0-21) ...
+aws_instance.web1 (remote-exec): Processing triggers for libc-bin (2.27-3ubuntu1.6) ...
+aws_instance.web1: Creation complete after 1m16s [id=i-0904808492a2c08ab]
+
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
