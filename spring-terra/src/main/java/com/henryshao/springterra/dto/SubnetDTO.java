@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class SubnetDTO {
     private String name;
-    private String cidrBlock;
+    private String public1_cidrBlock;
+    private String private1_cidrBlock;
     private String availabilityZone;
 }

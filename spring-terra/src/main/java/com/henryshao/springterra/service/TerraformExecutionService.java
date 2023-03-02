@@ -13,7 +13,7 @@ public class TerraformExecutionService {
     public void runTerraform() throws IOException, InterruptedException {
         System.out.println("Provisioning");
         // Set the directory where the Terraform configuration files are located
-        String terraformDir = "./configTest";
+        String terraformDir = "./config";
 
         // Initialize the Terraform configuration
         ProcessBuilder initProcessBuilder = new ProcessBuilder("terraform", "init")
@@ -37,7 +37,7 @@ public class TerraformExecutionService {
     public void destroyTerraform() throws IOException, InterruptedException {
         System.out.println("Destroying");
 
-        String terraformDir = "./configTest";
+        String terraformDir = "./config";
 
         ProcessBuilder applyProcessBuilder = new ProcessBuilder("terraform", "apply", "terraform.out")
                 .directory(new File(terraformDir));
