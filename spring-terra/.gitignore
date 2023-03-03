@@ -39,3 +39,4 @@ build/
 terraform.tfstate.backup
 terraform.tfstate
 *.out
+credentials.tf
