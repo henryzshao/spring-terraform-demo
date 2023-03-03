@@ -1,6 +1,7 @@
 package com.henryshao.springterra.service;
 
 import com.henryshao.springterra.dto.*;
+import com.henryshao.springterra.service.helper.RouteTableHelper;
 import com.henryshao.springterra.service.helper.SubnetHelper;
 import com.henryshao.springterra.utils.FileWriterUtils;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,8 @@ public class TerraformCreatorService {
         SubnetDTO[] publicSubnets = subnetArrays[0];
         SubnetDTO[] privateSubnets = subnetArrays[1];
 
-
         StringBuilder subnetOutput = new StringBuilder();
+
         int publicSubnetNumber = 1;
         int privateSubnetNumber = 1;
 
@@ -38,26 +39,12 @@ public class TerraformCreatorService {
         return FileWriterUtils.writeToFile("subnets.tf", subnetFile);
     }
 
-    public static String generatePublicRouteTable(SubnetDTO[] subnetDTOs) {
+    public static String generatePublicRouteTable(SubnetDTO[] publicSubnets) {
         StringBuilder routeTableBuilder = new StringBuilder();
 
-
-
-        // Route table resource block
-        routeTableBuilder.append("resource \"aws_route_table\" \"public_route_table\" {\n");
-        routeTableBuilder.append(String.format("  vpc_id = aws_vpc.vpc.id\n"));
-        routeTableBuilder.append("  route {\n");
-        routeTableBuilder.append("    cidr_block = \"0.0.0.0/0\"\n");
-        routeTableBuilder.append(String.format("    gateway_id = aws_internet_gateway.igw.id\n"));
-        routeTableBuilder.append("  }\n");
-        routeTableBuilder.append(String.format("  tags = {\n    Name = \"%s\"\n  }\n}\n", "test-public-route-table"));
-
-        // Route table association resource block
-        routeTableBuilder.append("resource \"aws_route_table_association\" \"public_subnet_association\" {\n");
-        routeTableBuilder.append("  for_each = toset(var.public_subnet_ids)\n");
-        routeTableBuilder.append("  subnet_id = each.value\n");
-        routeTableBuilder.append("  route_table_id = aws_route_table.public_route_table.id\n");
-        routeTableBuilder.append("}\n");
+        routeTableBuilder.append(RouteTableHelper.generateRouteTable());
+        routeTableBuilder.append(RouteTableHelper.generateRouteTableAssociation());
+        routeTableBuilder.append(RouteTableHelper.generateLocalSubnetID(publicSubnets));
 
         return routeTableBuilder.toString();
     }
