@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class FileWriterUtils {
 
-    public static boolean writeToFile(String fileName, String[] lines) {
+    public static boolean writeToFile(String fileName, String output) {
         try {
             File configFile = new File("./config", fileName);
             File fileDir = new File(configFile.getParent());
@@ -14,9 +14,7 @@ public class FileWriterUtils {
                 fileDir.mkdirs();
             }
             FileWriter fileWriter = new FileWriter(configFile);
-            for (String line : lines) {
-                fileWriter.write(line + "\n");
-            }
+            fileWriter.write(output + "\n");
             fileWriter.close();
             return true;
         } catch (IOException e) {

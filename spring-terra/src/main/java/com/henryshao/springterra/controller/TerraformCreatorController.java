@@ -14,6 +14,7 @@ public class TerraformCreatorController {
     public TerraformCreatorController(TerraformCreatorService creatorService) {
         this.creatorService = creatorService;
     }
+
     @PostMapping("terraform/attribute/subnet")
     public void handleSubnetRequest(@RequestBody SubnetDTO subnetDTO) {
 
@@ -22,8 +23,9 @@ public class TerraformCreatorController {
         System.out.println("name: " + subnetDTO.getName());
 
 
-        creatorService.generateSubnetFile(subnetDTO);
+        //creatorService.generateSubnetFile(subnetDTO);
     }
+
     @PostMapping("terraform/attribute/igw")
     public void handleInternetGatewayRequest(@RequestBody InternetGatewayDTO internetGatewayDTO) {
         creatorService.generateInternetGatewayFile(internetGatewayDTO);
@@ -33,10 +35,12 @@ public class TerraformCreatorController {
     public void handleVpcRequest(@RequestBody VpcDTO vpcDTO) {
         creatorService.generateVpcFile(vpcDTO);
     }
+
     @PostMapping("terraform/attribute/provider")
     public void handleProviderRequest() {
         creatorService.generateProviderFile();
     }
+
     @PostMapping("terraform/attribute/variables")
     public void handleVariablesRequest(@RequestBody VariablesDTO variablesDTO) {
         creatorService.generateVariablesFile(variablesDTO);

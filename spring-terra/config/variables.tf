@@ -9,4 +9,3 @@ variable "access_key" {
 variable "secret_key" {
   default = "s5CAkHX61msaVYhMKG47Og+HpK0LmAq1xZxj6WmL"
 }
-
