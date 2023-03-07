@@ -1,11 +1,13 @@
 package com.henryshao.springterra.controller;
 
 import com.henryshao.springterra.service.TerraformExecutionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+@Slf4j
 @RestController
 public class TerraformExecutionController {
 
@@ -13,6 +15,7 @@ public class TerraformExecutionController {
 
     @GetMapping("terraform/provision")
     public void provisionAWS(){
+        log.info("Provisioning from AWS");
         try {
             terraformExecutionService.runTerraform();
         } catch (IOException e) {
@@ -24,6 +27,7 @@ public class TerraformExecutionController {
 
     @GetMapping("terraform/destroy")
     public void destroyAWS(){
+        log.info("Destroying resources");
         try {
             terraformExecutionService.destroyTerraform();
         } catch (IOException e) {

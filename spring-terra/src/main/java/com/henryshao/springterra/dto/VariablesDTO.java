@@ -7,6 +7,4 @@ import lombok.Setter;
 @Setter
 public class VariablesDTO {
     private String region;
-    private String accessKey;
-    private String secretKey;
 }

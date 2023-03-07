@@ -1,11 +1,17 @@
 package com.henryshao.springterra.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.henryshao.springterra.dto.*;
 import com.henryshao.springterra.service.TerraformCreatorService;
+import com.henryshao.springterra.utils.JsonTester;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Slf4j
 @RestController
 public class TerraformCreatorController {
 
@@ -16,33 +22,63 @@ public class TerraformCreatorController {
     }
 
     @PostMapping("terraform/attribute/subnet")
-    public void handleSubnetRequest(@RequestBody SubnetDTO subnetDTO) {
+    public void handleSubnetRequest(@RequestBody SubnetDTO[] subnetDTOs) throws JsonProcessingException {
 
-        System.out.println("cidrBlock: " + subnetDTO.getCidrBlock());
-        System.out.println("availabilityZone: " + subnetDTO.getAvailabilityZone());
-        System.out.println("name: " + subnetDTO.getName());
-
-
-        //creatorService.generateSubnetFile(subnetDTO);
+        log.info("Generating subnet and route tables configuration files");
+        if(creatorService.generateSubnetFile(subnetDTOs))
+        {
+            log.info("Subnet generation successful");
+        } else {
+            log.info("Subnet generation successful");
+        }
     }
 
     @PostMapping("terraform/attribute/igw")
     public void handleInternetGatewayRequest(@RequestBody InternetGatewayDTO internetGatewayDTO) {
-        creatorService.generateInternetGatewayFile(internetGatewayDTO);
+
+        log.info("Generating internet gateway configuration files");
+        if(creatorService.generateInternetGatewayFile(internetGatewayDTO))
+        {
+            log.info("Igw file generation successful");
+        } else {
+            log.info("Igw file generation successful");
+        }
     }
 
     @PostMapping("terraform/attribute/vpc")
     public void handleVpcRequest(@RequestBody VpcDTO vpcDTO) {
-        creatorService.generateVpcFile(vpcDTO);
+
+        log.info("Generating vpc configuration files");
+        if(creatorService.generateVpcFile(vpcDTO))
+        {
+            log.info("Vpc file generation successful");
+        } else {
+            log.info("Vpc file generation successful");
+        }
     }
 
     @PostMapping("terraform/attribute/provider")
     public void handleProviderRequest() {
         creatorService.generateProviderFile();
+
+        log.info("Generating provider configuration files");
+        if(creatorService.generateProviderFile())
+        {
+            log.info("Providers file generation successful");
+        } else {
+            log.info("Providers file generation successful");
+        }
     }
 
     @PostMapping("terraform/attribute/variables")
     public void handleVariablesRequest(@RequestBody VariablesDTO variablesDTO) {
-        creatorService.generateVariablesFile(variablesDTO);
+
+        log.info("Generating variables files");
+        if(creatorService.generateVariablesFile(variablesDTO))
+        {
+            log.info("Variables file generation successful");
+        } else {
+            log.info("Variables file generation successful");
+        }
     }
 }

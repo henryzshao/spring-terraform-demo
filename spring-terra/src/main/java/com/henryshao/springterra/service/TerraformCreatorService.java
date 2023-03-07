@@ -4,11 +4,13 @@ import com.henryshao.springterra.dto.*;
 import com.henryshao.springterra.service.helper.RouteTableHelper;
 import com.henryshao.springterra.service.helper.SubnetHelper;
 import com.henryshao.springterra.utils.FileWriterUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class TerraformCreatorService {
 
@@ -34,19 +36,31 @@ public class TerraformCreatorService {
 
         String subnetFile = subnetOutput.toString();
 
-        generatePublicRouteTable(publicSubnets);
+        log.info("Generating public route table");
+        if(generatePublicRouteTable(publicSubnets))
+        {
+            log.info("Public route generation successful");
+        } else {
+            log.info("Public route generation unsuccessful");
+        }
 
-        return FileWriterUtils.writeToFile("subnets.tf", subnetFile);
+        String fileName = "subnets.tf";
+        log.info(String.format("Writing content to file %s", fileName));
+        return FileWriterUtils.writeToFile(fileName, subnetFile);
     }
 
-    public static String generatePublicRouteTable(SubnetDTO[] publicSubnets) {
+    private static boolean generatePublicRouteTable(SubnetDTO[] publicSubnets) {
         StringBuilder routeTableBuilder = new StringBuilder();
 
         routeTableBuilder.append(RouteTableHelper.generateRouteTable());
         routeTableBuilder.append(RouteTableHelper.generateRouteTableAssociation());
         routeTableBuilder.append(RouteTableHelper.generateLocalSubnetID(publicSubnets));
 
-        return routeTableBuilder.toString();
+        String routeTableFile = routeTableBuilder.toString();
+
+        String fileName = "route_table.tf";
+        log.info(String.format("Writing content to file %s", fileName));
+        return FileWriterUtils.writeToFile(fileName, routeTableFile);
     }
 
 
@@ -61,7 +75,9 @@ public class TerraformCreatorService {
 
         String igwFile = igwBuilder.toString();
 
-        return FileWriterUtils.writeToFile("internet_gateway.tf", igwFile);
+        String fileName = "internet_gateway.tf";
+        log.info(String.format("Writing content to file %s", fileName));
+        return FileWriterUtils.writeToFile(fileName, igwFile);
     }
 
     public boolean generateVpcFile(VpcDTO vpcDTO) {
@@ -75,7 +91,9 @@ public class TerraformCreatorService {
 
         String vpcFile = vpcBuilder.toString();
 
-        return FileWriterUtils.writeToFile("vpc.tf", vpcFile);
+        String fileName = "vpc.tf";
+        log.info(String.format("Writing content to file %s", fileName));
+        return FileWriterUtils.writeToFile(fileName, vpcFile);
     }
 
 
@@ -91,7 +109,9 @@ public class TerraformCreatorService {
 
         String providerFile = providerBuilder.toString();
 
-        return FileWriterUtils.writeToFile("provider.tf", providerFile);
+        String fileName = "provider.tf";
+        log.info(String.format("Writing content to file %s", fileName));
+        return FileWriterUtils.writeToFile(fileName, providerFile);
     }
 
     public boolean generateVariablesFile(VariablesDTO variablesDTO) {
@@ -101,17 +121,11 @@ public class TerraformCreatorService {
         variablesBuilder.append(String.format("variable \"region\" {\n"));
         variablesBuilder.append(String.format("  default = \"%s\"\n", variablesDTO.getRegion()));
         variablesBuilder.append(String.format("}\n"));
-        variablesBuilder.append(String.format("\n"));
-        variablesBuilder.append(String.format("variable \"access_key\" {\n"));
-        variablesBuilder.append(String.format("  default = \"%s\"\n", variablesDTO.getAccessKey()));
-        variablesBuilder.append(String.format("}\n"));
-        variablesBuilder.append(String.format("\n"));
-        variablesBuilder.append(String.format("variable \"secret_key\" {\n"));
-        variablesBuilder.append(String.format("  default = \"%s\"\n", variablesDTO.getSecretKey()));
-        variablesBuilder.append(String.format("}\n"));
 
         String variablesFile = variablesBuilder.toString();
 
-        return FileWriterUtils.writeToFile("variables.tf", variablesFile);
+        String fileName = "variables.tf";
+        log.info(String.format("Writing content to file %s", fileName));
+        return FileWriterUtils.writeToFile(fileName, variablesFile);
     }
 }

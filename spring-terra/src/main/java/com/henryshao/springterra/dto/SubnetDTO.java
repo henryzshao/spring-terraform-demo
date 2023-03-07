@@ -9,4 +9,11 @@ public class SubnetDTO {
     private String availabilityZone;
     private boolean isPublic;
     private String resourceId = "";
+
+    public SubnetDTO(String name, String cidrBlock, String availabilityZone, boolean isPublic) {
+        this.name = name;
+        this.cidrBlock = cidrBlock;
+        this.availabilityZone = availabilityZone;
+        this.isPublic = isPublic;
+    }
 }

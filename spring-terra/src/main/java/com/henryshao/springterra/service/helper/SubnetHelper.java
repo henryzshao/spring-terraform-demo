@@ -18,11 +18,10 @@ public class SubnetHelper {
         subnetBuilder.append(String.format("  tags = {\n    Name = \"%s\"\n  }\n}\n", subnetDTO.getName()));
 
         subnetDTO.setResourceId(String.format("public_subnet_%d", subnetNumber));
-
         return subnetBuilder.toString();
     }
 
-    public static SubnetDTO generatePrivateSubnet(SubnetDTO subnetDTO, int subnetNumber) {
+    public static String generatePrivateSubnet(SubnetDTO subnetDTO, int subnetNumber) {
         StringBuilder subnetBuilder = new StringBuilder();
 
         subnetBuilder.append("resource \"aws_subnet\" \"private_subnet_" + subnetNumber + "\" {\n");
@@ -32,8 +31,7 @@ public class SubnetHelper {
         subnetBuilder.append(String.format("  tags = {\n    Name = \"%s\"\n  }\n}\n", subnetDTO.getName()));
 
         subnetDTO.setResourceId(String.format("private_subnet_%d", subnetNumber));
-
-        return subnetDTO;
+        return subnetBuilder.toString();
     }
 
     public static SubnetDTO[][] splitSubnetsByType(SubnetDTO[] subnetDTOs) {
