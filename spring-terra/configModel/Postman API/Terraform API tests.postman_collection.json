@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "cbb30b75-1f8b-4b8a-826c-d8c2272f864e",
+		"name": "Terraform API tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18449953"
+	},
+	"item": [
+		{
+			"name": "Provision",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/terraform/provision",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"terraform",
+						"provision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Destroy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/terraform/destroy",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"terraform",
+						"destroy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subnet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"name\": \"public-subnet-1\",\r\n    \"cidrBlock\": \"10.0.1.0/24\",\r\n    \"availabilityZone\": \"us-east-1a\",\r\n    \"isPublic\": true\r\n  },\r\n  {\r\n    \"name\": \"private-subnet-2\",\r\n    \"cidrBlock\": \"10.0.2.0/24\",\r\n    \"availabilityZone\": \"us-east-1b\",\r\n    \"isPublic\": false\r\n  },\r\n  {\r\n    \"name\": \"public-subnet-3\",\r\n    \"cidrBlock\": \"10.0.3.0/24\",\r\n    \"availabilityZone\": \"us-east-1b\",\r\n    \"isPublic\": true\r\n  },\r\n  {\r\n    \"name\": \"private-subnet-4\",\r\n    \"cidrBlock\": \"10.0.4.0/24\",\r\n    \"availabilityZone\": \"us-east-1b\",\r\n    \"isPublic\": false\r\n  }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/terraform/attribute/subnet",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"terraform",
+						"attribute",
+						"subnet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VPC",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"test-vpc\",\r\n  \"cidrBlock\": \"10.0.0.0/16\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/terraform/attribute/vpc",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"terraform",
+						"attribute",
+						"vpc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Variables",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"region\": \"us-east-1\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/terraform/attribute/variables",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"terraform",
+						"attribute",
+						"variables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"region\": \"us-east-1\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/terraform/attribute/provider",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"terraform",
+						"attribute",
+						"provider"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InternetGatewayDTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"test-igw\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/terraform/attribute/igw",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"terraform",
+						"attribute",
+						"igw"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
