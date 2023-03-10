@@ -29,7 +29,7 @@ public class TerraformCreatorController {
         {
             log.info("Subnet generation successful");
         } else {
-            log.info("Subnet generation successful");
+            log.info("Subnet generation unsuccessful");
         }
     }
 
@@ -41,7 +41,7 @@ public class TerraformCreatorController {
         {
             log.info("Igw file generation successful");
         } else {
-            log.info("Igw file generation successful");
+            log.info("Igw file generation unsuccessful");
         }
     }
 
@@ -53,7 +53,7 @@ public class TerraformCreatorController {
         {
             log.info("Vpc file generation successful");
         } else {
-            log.info("Vpc file generation successful");
+            log.info("Vpc file generation unsuccessful");
         }
     }
 
@@ -66,7 +66,7 @@ public class TerraformCreatorController {
         {
             log.info("Providers file generation successful");
         } else {
-            log.info("Providers file generation successful");
+            log.info("Providers file generation unsuccessful");
         }
     }
 
@@ -78,7 +78,7 @@ public class TerraformCreatorController {
         {
             log.info("Variables file generation successful");
         } else {
-            log.info("Variables file generation successful");
+            log.info("Variables file generation unsuccessful");
         }
     }
 }
